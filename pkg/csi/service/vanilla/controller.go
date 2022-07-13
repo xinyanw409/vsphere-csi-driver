@@ -1640,6 +1640,13 @@ func (c *controller) ControllerGetCapabilities(ctx context.Context, req *csi.Con
 		csi.ControllerServiceCapability_RPC_EXPAND_VOLUME,
 		csi.ControllerServiceCapability_RPC_CREATE_DELETE_SNAPSHOT,
 		csi.ControllerServiceCapability_RPC_LIST_SNAPSHOTS,
+		csi.ControllerServiceCapability_RPC_CREATE_DELETE_VOLUME_GROUP,
+		csi.ControllerServiceCapability_RPC_VOLUME_GROUP_ADD_REMOVE_EXISTING_VOLUME,
+		csi.ControllerServiceCapability_RPC_INDIVIDUAL_SNAPSHOT_RESTORE,
+		csi.ControllerServiceCapability_RPC_GET_VOLUME_GROUP,
+		csi.ControllerServiceCapability_RPC_GET_VOLUME_GROUP_SNAPSHOT,
+		csi.ControllerServiceCapability_RPC_LIST_VOLUME_GROUPS,
+		csi.ControllerServiceCapability_RPC_LIST_VOLUME_GROUP_SNAPSHOTS,
 	}
 
 	if commonco.ContainerOrchestratorUtility.IsFSSEnabled(ctx, common.ListVolumes) {

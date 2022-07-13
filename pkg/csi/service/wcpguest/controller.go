@@ -61,6 +61,13 @@ var (
 		csi.ControllerServiceCapability_RPC_CREATE_DELETE_VOLUME,
 		csi.ControllerServiceCapability_RPC_PUBLISH_UNPUBLISH_VOLUME,
 		csi.ControllerServiceCapability_RPC_EXPAND_VOLUME,
+		csi.ControllerServiceCapability_RPC_CREATE_DELETE_VOLUME_GROUP,
+		csi.ControllerServiceCapability_RPC_VOLUME_GROUP_ADD_REMOVE_EXISTING_VOLUME,
+		csi.ControllerServiceCapability_RPC_INDIVIDUAL_SNAPSHOT_RESTORE,
+		csi.ControllerServiceCapability_RPC_GET_VOLUME_GROUP,
+		csi.ControllerServiceCapability_RPC_GET_VOLUME_GROUP_SNAPSHOT,
+		csi.ControllerServiceCapability_RPC_LIST_VOLUME_GROUPS,
+		csi.ControllerServiceCapability_RPC_LIST_VOLUME_GROUP_SNAPSHOTS,
 	}
 )
 
@@ -1305,4 +1312,14 @@ func (c *controller) ListSnapshots(ctx context.Context, req *csi.ListSnapshotsRe
 func (c *controller) ControllerGetVolume(ctx context.Context, req *csi.ControllerGetVolumeRequest) (
 	*csi.ControllerGetVolumeResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "")
+}
+
+func (c *controller) ControllerCreateVolumeGroup(ctx context.Context, req *csi.CreateVolumeGroupRequest) (
+	*csi.CreateVolumeGroupResponse, error) {
+		return &csi.CreateVolumeGroupResponse{}, nil
+}
+
+func (c *controller) ControllerDeleteVolumeGroup(ctx context.Context, req *csi.DeleteVolumeGroupRequest) (
+	*csi.DeleteVolumeGroupResponse, error) {
+	return &csi.DeleteVolumeGroupResponse{}, nil
 }
