@@ -19,6 +19,7 @@ package vanilla
 import (
 	"context"
 	"fmt"
+	"github.com/google/uuid"
 	"net/http"
 	"path/filepath"
 	"strconv"
@@ -1640,6 +1641,13 @@ func (c *controller) ControllerGetCapabilities(ctx context.Context, req *csi.Con
 		csi.ControllerServiceCapability_RPC_EXPAND_VOLUME,
 		csi.ControllerServiceCapability_RPC_CREATE_DELETE_SNAPSHOT,
 		csi.ControllerServiceCapability_RPC_LIST_SNAPSHOTS,
+		csi.ControllerServiceCapability_RPC_CREATE_DELETE_VOLUME_GROUP,
+		csi.ControllerServiceCapability_RPC_VOLUME_GROUP_ADD_REMOVE_EXISTING_VOLUME,
+		csi.ControllerServiceCapability_RPC_INDIVIDUAL_SNAPSHOT_RESTORE,
+		csi.ControllerServiceCapability_RPC_GET_VOLUME_GROUP,
+		csi.ControllerServiceCapability_RPC_GET_VOLUME_GROUP_SNAPSHOT,
+		csi.ControllerServiceCapability_RPC_LIST_VOLUME_GROUPS,
+		csi.ControllerServiceCapability_RPC_LIST_VOLUME_GROUP_SNAPSHOTS,
 	}
 
 	if commonco.ContainerOrchestratorUtility.IsFSSEnabled(ctx, common.ListVolumes) {
@@ -1918,4 +1926,16 @@ func (c *controller) ControllerGetVolume(ctx context.Context, req *csi.Controlle
 	log := logger.GetLogger(ctx)
 	log.Infof("ControllerGetVolume: called with args %+v", *req)
 	return nil, logger.LogNewErrorCode(log, codes.Unimplemented, "controllerGetVolume")
+}
+
+func (c *controller) CreateVolumeGroup(ctx context.Context, req *csi.CreateVolumeGroupRequest) (
+	*csi.CreateVolumeGroupResponse, error) {
+	return &csi.CreateVolumeGroupResponse{
+		VolumeGroup: &csi.VolumeGroup{VolumeGroupId: uuid.New().String()},
+	}, nil
+}
+
+func (c *controller) DeleteVolumeGroup(ctx context.Context, req *csi.DeleteVolumeGroupRequest) (
+	*csi.DeleteVolumeGroupResponse, error) {
+	return &csi.DeleteVolumeGroupResponse{}, nil
 }
