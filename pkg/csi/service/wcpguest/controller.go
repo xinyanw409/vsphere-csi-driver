@@ -1313,3 +1313,13 @@ func (c *controller) ControllerGetVolume(ctx context.Context, req *csi.Controlle
 	*csi.ControllerGetVolumeResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "")
 }
+
+func (c *controller) ControllerCreateVolumeGroup(ctx context.Context, req *csi.CreateVolumeGroupRequest) (
+	*csi.CreateVolumeGroupResponse, error) {
+		return nil, status.Error(codes.Unimplemented, "")
+}
+
+func (c *controller) ControllerDeleteVolumeGroup(ctx context.Context, req *csi.DeleteVolumeGroupRequest) (
+	*csi.DeleteVolumeGroupResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "")
+}
